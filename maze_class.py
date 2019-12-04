@@ -10,9 +10,9 @@ class Maze:
     def __init__(self, level):
         self.level = level
         self.dimensions = 5*level
-    
+        self.make_maze()
     def make_maze(self):
-        self.maze= np.ones(self.dimensions, self.dimensions)
+        self.maze= np.ones((self.dimensions, self.dimensions))
         for c in range(1,3*self.level):
             x = random.randint(1, self.dimensions)
             y = random.randint(1, self.dimensions)
