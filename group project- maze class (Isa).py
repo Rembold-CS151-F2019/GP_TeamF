@@ -22,7 +22,7 @@ class Maze:
     def check_wall(self, x, y):
         if self.maze[x,y]== 1:
             path = 'empty'
-            return path 
+           
         elif self.maze[x,y] == 0:
             path = 'wall'
         return path             
