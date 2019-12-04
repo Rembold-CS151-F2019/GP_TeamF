@@ -1,6 +1,7 @@
 import graphics as g
-import numpy as np
-import maze_class as maze
+#import numpy as np
+# Importing Isa's class to use
+import maze_class as m
 
 class Player:
     def __init__(self, w, x, y):
@@ -9,26 +10,27 @@ class Player:
         self.y = y
         self.draw()
         
-    # Maybe do some sort of nicer graphic for the player eventually??
+    # Making the visual representation of the player
     def draw(self):
         self.object = g.Circle(g.Point(self.x, self.y), 20)
-        self.object.setFill("red")
-        self.object.draw(self.w)
+        self.object.setFill("DarkViolet")
+        self.object.draw(w)
         
-    # Need collision detection
+    # Allows for keyboard control and does not allow moves if wall is present
     def control(self, key):
         self.key = key
         # counter for every player move made
         moves = 0
-        if key == "Up" and maze.check_wall != "wall":
+        # Allows for either arrows or WASD movement
+        if key == "Up" and m.Maze.check_wall != "wall" or key == "w" and m.Maze.check_wall != "wall":
             moves += 1
-            self.object.move(0, -5)
-        if key == "Down" and maze.check_wall != "wall":
+            self.object.move(0, -20)
+        if key == "Down" and m.Maze.check_wall != "wall" or key == "s" and m.Maze.check_wall != "wall":
             moves += 1
-            self.object.move(0, 5)
-        if key == "Left" and maze.check_wall != "wall":
+            self.object.move(0, 20)
+        if key == "Left" and m.Maze.check_wall != "wall" or key == "a" and m.Maze.check_wall != "wall":
             moves += 1
-            self.object.move(-5, 0)
-        if key == "Right" and maze.check_wall != "wall":
+            self.object.move(-20, 0)
+        if key == "Right" and m.Maze.check_wall != "wall" or key == "d" and m.Maze.check_wall != "wall":
             moves += 1
-            self.object.move(5, 0)
+            self.object.move(20, 0)
