@@ -1,5 +1,6 @@
 import graphics as g
 import numpy as np
+import maze_class as maze
 
 class Player:
     def __init__(self, w, x, y):
@@ -19,15 +20,15 @@ class Player:
         self.key = key
         # counter for every player move made
         moves = 0
-        if key == "Up":
+        if key == "Up" and maze.get_wall != "wall":
             moves += 1
             self.object.move(0, -5)
-        if key == "Down":
+        if key == "Down" and maze.get_wall != "wall":
             moves += 1
             self.object.move(0, 5)
-        if key == "Left":
+        if key == "Left" and maze.get_wall != "wall":
             moves += 1
             self.object.move(-5, 0)
-        if key == "Right":
+        if key == "Right" and maze.get_wall != "wall":
             moves += 1
             self.object.move(5, 0)
