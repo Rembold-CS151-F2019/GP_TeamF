@@ -16,8 +16,6 @@ class Level():
         self.w = window
         
     def level_up(self):
-        maze = m.Maze
-        player = p.Player
         self.level = 1
         w = g.GraphWin('Maze', 800, 800)
         w.setBackground('Green')
@@ -26,6 +24,8 @@ class Level():
         while k != "q":
             clickpoint =w.checkMouse()
             k=w.checkKey()
+            
+            player.control(k)
         
         w.close()
         
@@ -40,26 +40,29 @@ class Level():
         while k != "q":
             clickpoint =w.checkMouse()
             k=w.checkKey()
+            
+            player.control(k)
     
         w.close()
         
         if self.level > 5:
             return "You have escaped the final maze!"
     def draw(self):
-        self.maze.draw(w)
+        if self.level+1:
+            self.maze.draw(w)
     
             
             
 w = g.GraphWin('Maze', 800,800)
 w.setBackground('Green')
-maze = m.Maze(1)
-#maze.draw()
-player = p.Player()
-player.draw(w)
+maze = m.Maze(5)
+player = p.Player(w,0,0)
+player.draw()
 k=""
 while k != "q":
     clickpoint =w.checkMouse()
     k=w.checkKey()
+    player.control(k)
     
 w.close()     
     

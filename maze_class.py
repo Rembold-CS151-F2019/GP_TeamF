@@ -14,8 +14,8 @@ class Maze:
     def make_maze(self):
         self.maze= np.ones((self.dimensions, self.dimensions))
         for c in range(1,3*self.level):
-            x = random.randint(1, self.dimensions)
-            y = random.randint(1, self.dimensions)
+            x = random.randint(0, self.dimensions-1)
+            y = random.randint(0, self.dimensions-1)
             self.maze[x,y] = 0
         return self.maze
             
