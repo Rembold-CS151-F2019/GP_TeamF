@@ -17,6 +17,7 @@ class Maze:
             x = random.randint(1, self.dimensions)
             y = random.randint(1, self.dimensions)
             self.maze[x,y] = 0
+        return self.maze
             
             
     def check_wall(self, x, y):
