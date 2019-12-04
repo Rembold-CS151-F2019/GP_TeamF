@@ -1,4 +1,5 @@
 import graphics as g
+import numpy as np
 
 class Player:
     def __init__(self, w, x, y):
@@ -16,11 +17,16 @@ class Player:
     # Need collision detection
     def control(self, key):
         self.key = key
+        moves = 0
         if key == "Up":
+            moves += 1
             self.object.move(0, -5)
         if key == "Down":
+            moves += 1
             self.object.move(0, 5)
         if key == "Left":
+            moves += 1
             self.object.move(-5, 0)
         if key == "Right":
+            moves += 1
             self.object.move(5, 0)
