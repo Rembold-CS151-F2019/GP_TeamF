@@ -61,7 +61,7 @@ levelcount = 0
 while levelcount < 6:
     levelcount += 1
     L = Level(levelcount)
-    if Level.self.levelcompleted == False:
+    if Level.lost == False:
         break
     
             

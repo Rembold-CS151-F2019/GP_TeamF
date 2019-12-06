@@ -26,18 +26,18 @@ class Player:
         moves = 0
         # scaling = 1200/m.Maze().get_name.dimensions
         # Allows for either arrows or WASD movement
-        if key == "Up" and self.maze.check_wall(self.get_location, self.get_location - self.scaling) != "wall" or key == "w" and self.maze.check_wall(self.get_location, self.get_location - self.scaling) != "wall":
+        if key == "Up": #and self.maze.check_wall(self.get_location, self.get_location - self.scaling) != "wall" or key == "w" and self.maze.check_wall(self.get_location, self.get_location - self.scaling) != "wall":
             moves += 1
-            self.object.move(0, -20)
-        if key == "Down" and self.maze.check_wall(self.get_location, self.get_location + self.scaling) != "wall" or key == "s" and self.maze.check_wall(self.get_location, self.get_location + self.scaling) != "wall":
+            self.object.move(0, -240)
+        if key == "Down": #and self.maze.check_wall(self.get_location, self.get_location + self.scaling) != "wall" or key == "s" and self.maze.check_wall(self.get_location, self.get_location + self.scaling) != "wall":
             moves += 1
-            self.object.move(0, 20)
-        if key == "Left" and self.maze.check_wall(self.get_location - self.scaling, self.get_location) != "wall" or key == "a" and self.maze.check_wall(self.get_location - self.scaling, self.get_location) != "wall":
+            self.object.move(0, 240)
+        if key == "Left": #and self.maze.check_wall(self.get_location - self.scaling, self.get_location) != "wall" or key == "a" and self.maze.check_wall(self.get_location - self.scaling, self.get_location) != "wall":
             moves += 1
-            self.object.move(-20, 0)
-        if key == "Right" and self.maze.check_wall(self.get_location + self.scaling, self.get_location) != "wall" or key == "d" and self.maze.check_wall(self.get_location + self.scaling, self.get_location) != "wall":
+            self.object.move(-240, 0)
+        if key == "Right": #and self.maze.check_wall(self.get_location + self.scaling, self.get_location) != "wall" or key == "d" and self.maze.check_wall(self.get_location + self.scaling, self.get_location) != "wall":
             moves += 1
-            self.object.move(20, 0)
+            self.object.move(240, 0)
             
     def get_location(self):
         location = self.location
