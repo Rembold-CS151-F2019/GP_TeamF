@@ -11,6 +11,13 @@ class Maze:
         self.level = level
         self.dimensions = 5*level
         self.make_maze()
+        
+    
+    def get_name(self):
+        dimensions = self.dimensions 
+        return dimensions 
+    
+    
     def make_maze(self):
         self.maze= np.ones((self.dimensions, self.dimensions))
         for c in range(1,3*self.level):
