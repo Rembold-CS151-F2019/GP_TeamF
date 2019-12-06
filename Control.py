@@ -29,34 +29,13 @@ class Level():
                     path.draw(self.w)
         
     def level_up(self):
+        maze = m.Maze()
         key = None
-        
-        while key != "q" and self.levelcompleted == False:
+        while key != "q" and self.levelcompleted ==False:
             k=w.checkKey()
-            
             player.control(k)
-        
-        w.close()
-        
-        if player.moves<= 10:
-            self.level+=1
-            return self.level
-    
-        w = g.GraphWin('Maze', 800, 800)
-        w.setBackground('Green')
-        
-        k=""
-        while k != "q":
-            
-            k=w.checkKey()
-            
-            player.control(k)
-    
-        w.close()
-        
-        if self.level > 5:
-            return "You have escaped the final maze!"
-    
+            if maze.start == maze.end:
+                self.levelcompleted == True
             
 
 w = g.GraphWin("Window", 1200, 1200)
