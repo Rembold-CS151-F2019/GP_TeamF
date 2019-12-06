@@ -79,9 +79,15 @@ for row in range(m.Maze.get_name.dimensions):
 
 player = p.Player(w, 300, 300)
 key = "z"
+levelcount = 0
 while key != "q":
     key = w.checkKey()
     p.control(key)
+while levelcount < 6:
+    levelcount += 1
+    L = Level(levelcount)
+    if L.lost:
+        break
 w.close()
     
             
