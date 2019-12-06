@@ -23,18 +23,18 @@ class Maze:
     
     def make_maze(self):
         self.maze= np.ones((self.dimensions, self.dimensions))
-        for c in range(1,3*self.level):
+        for c in range(0,10*self.level):
             x = random.randint(0, self.dimensions-1)
             y = random.randint(0, self.dimensions-1)
             self.maze[x,y] = 0
         return self.maze
             
             
-    def check_wall(self, x, y):
-        if self.maze[x,y] == 1:
+    def check_wall(self, r, c):
+        if self.maze[r,c] == 1:
             path = 'empty'
            
-        elif self.maze[x,y] == 0:
+        elif self.maze[r,c] == 0:
             path = 'wall'
         return path             
     
@@ -47,4 +47,5 @@ class Maze:
             finish = (random.randint(0, self.dimensions-1),  random.randint(0, self.dimensions-1))
          self.start = start_location
          self.end = finish
+         print(self.end)
              

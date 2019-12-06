@@ -1,7 +1,8 @@
 import graphics as g
-import numpy as np
+#import numpy as np
 # Importing Isa's class to use
 import maze_class as m
+# import Control as c
 
 class Player:
     def __init__(self, w, x, y, maze, scaling):
@@ -12,10 +13,12 @@ class Player:
         self.scaling = scaling
         self.draw()
         self.location = self.object.getCenter()
+        self.r = int(self.location.getY() // self.scaling)
+        self.c = int(self.location.getX() // self.scaling)
         
     # Making the visual representation of the player
     def draw(self):
-        self.object = g.Circle(g.Point(self.x, self.y), 100)
+        self.object = g.Circle(g.Point(self.x, self.y), self.scaling//4)
         self.object.setFill("DarkViolet")
         self.object.draw(self.w)
         
@@ -26,22 +29,26 @@ class Player:
         moves = 0
         # scaling = 1200/m.Maze().get_name.dimensions
         # Allows for either arrows or WASD movement
-        if key == "Up": #and self.maze.check_wall(self.get_location, self.get_location - self.scaling) != "wall" or key == "w" and self.maze.check_wall(self.get_location, self.get_location - self.scaling) != "wall":
+        if key == "Up" and self.maze.check_wall(self.r-1, self.c) != "wall" or key == "w" and self.maze.check_wall(self.r-1, self.c) != "wall":
             moves += 1
-            self.object.move(0, -240)
-        if key == "Down": #and self.maze.check_wall(self.get_location, self.get_location + self.scaling) != "wall" or key == "s" and self.maze.check_wall(self.get_location, self.get_location + self.scaling) != "wall":
+            self.object.move(0, -self.scaling)
+        if (key == "Down" and self.maze.check_wall(self.r+1, self.c) != "wall") or (key == "s" and self.maze.check_wall(self.r+1, self.c) != "wall"):
             moves += 1
-            self.object.move(0, 240)
-        if key == "Left": #and self.maze.check_wall(self.get_location - self.scaling, self.get_location) != "wall" or key == "a" and self.maze.check_wall(self.get_location - self.scaling, self.get_location) != "wall":
+            self.object.move(0, self.scaling)
+        if key == "Left" and self.maze.check_wall(self.r, self.c-1) != "wall" or key == "a" and self.maze.check_wall(self.r, self.c-1) != "wall":
             moves += 1
-            self.object.move(-240, 0)
-        if key == "Right": #and self.maze.check_wall(self.get_location + self.scaling, self.get_location) != "wall" or key == "d" and self.maze.check_wall(self.get_location + self.scaling, self.get_location) != "wall":
+            self.object.move(-self.scaling, 0)
+        if key == "Right" and self.maze.check_wall(self.r, self.c+1) != "wall" or key == "d" and self.maze.check_wall(self.r, self.c+1) != "wall":
             moves += 1
-            self.object.move(240, 0)
+            self.object.move(self.scaling, 0)
             
+        self.location = self.object.getCenter()
+        self.r = int(self.location.getY() // self.scaling)
+        self.c = int(self.location.getX() // self.scaling)
+
+
     def get_location(self):
-        location = self.location
-        return location
+        return (self.r, self.c)
             
 # w = g.GraphWin("Window", 1200, 1200)
 # # bg must be a GIF

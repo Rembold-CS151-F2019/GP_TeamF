@@ -13,19 +13,19 @@ import Player_class as p
 class Level():
     def __init__(self, levelcount):
         self.levelcompleted = False
-        self.levelcount = 1
+        self.levelcount = levelcount
         
         
-        self.w = g.GraphWin("Window", 1200, 1200)
+        self.w = g.GraphWin("Window", 600, 600)
         # bg must be a GIF
-        background = g.Image((g.Point(600,600)), "corn_bg.gif")
+        background = g.Image((g.Point(300,300)), "corn_bg.gif")
         background.draw(self.w)
         self.maze = m.Maze(self.levelcount)
         self.draw_maze()
         self.play_maze()
 
     def draw_maze(self):
-        scaling = 1200/self.maze.dimensions
+        scaling = self.w.getHeight()/self.maze.dimensions
 
         for row in range(self.maze.dimensions):
             for col in range(self.maze.dimensions):
@@ -33,18 +33,29 @@ class Level():
                     path = g.Rectangle(g.Point(col * scaling, row * scaling), g.Point((col+1)*scaling, (row+1)*scaling))
                     path.setFill("yellow")
                     path.draw(self.w)
+                    
+        end_line = g.Rectangle(g.Point(self.maze.end[1]*scaling, self.maze.end[0]*scaling), g.Point((self.maze.end[1]+1)*scaling, (self.maze.end[0]+1)*scaling))
+        end_line.setFill("red")
+        end_line.draw(self.w)
 
         self.player = p.Player(self.w, self.maze.start[0]*scaling, self.maze.start[1]*scaling, self.maze, scaling)
         
     def play_maze(self):
         k = None
-        while k!= "q" and self.levelcompleted ==False:
+        while k!= "q":
             k=self.w.checkKey()
             self.player.control(k)
-            if self.player.get_location() == self.maze.end:
-                self.levelcompleted == True
+            #print(self.player.get_location())
+            #print(self.maze.end)
+            cur_r, cur_c = self.player.get_location()
+            # if self.player.getmoves() > 10:
+                # self.lost = True
+                # break
+            if (cur_r == self.maze.end[0]) and (cur_c == self.maze.end[1]):
+                print('Finished!')
                 self.lost = False
-        self.lost = True
+                break
+        self.w.close()
         
 
 #w = g.GraphWin("Window", 1200, 1200)
@@ -61,7 +72,9 @@ levelcount = 0
 while levelcount < 6:
     levelcount += 1
     L = Level(levelcount)
-    if Level.lost == False:
+    print('Level finished')
+    print(levelcount)
+    if L.lost:
         break
     
             
