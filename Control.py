@@ -16,28 +16,35 @@ class Level():
         self.levelcount = 1
         
         
-        w = g.GraphWin("Window", 1200, 1200)
+        self.w = g.GraphWin("Window", 700, 700)
         # bg must be a GIF
         background = g.Image((g.Point(600,600)), "corn_bg.gif")
-        background.draw(w)
-        scaling = 1200/m.Maze().get_name.dimensions
-        player = p.Player(w, m.Maze.start[0], m.Maze.start[1])
+        background.draw(self.w)
+        self.maze = m.Maze(self.levelcount)
+        self.draw_maze()
+        self.play_maze()
 
-        for row in range(m.Maze().get_name.dimensions):
-            for col in range(m.Maze().get_name.dimensions):
-                if m.Maze().check_wall(row, col) == "empty":
+    def draw_maze(self):
+        scaling = 1200/self.maze.dimensions
+
+        for row in range(self.maze.dimensions):
+            for col in range(self.maze.dimensions):
+                if self.maze.check_wall(row, col) == "empty":
                     path = g.Rectangle(g.Point(col * scaling, row * scaling), g.Point((col+1)*scaling, (row+1)*scaling))
                     path.setFill("yellow")
                     path.draw(self.w)
+
+        self.player = p.Player(self.w, self.maze.start[0]*scaling, self.maze.start[1]*scaling, self.maze, scaling)
         
-    def level_up(self):
-        maze = m.Maze()
+    def play_maze(self):
         k = None
         while k!= "q" and self.levelcompleted ==False:
-            k=w.checkKey()
-            p.control(k)
-            if p.Player.get_location() == maze.end:
+            k=self.w.checkKey()
+            self.player.control(k)
+            if self.player.get_location() == self.maze.end:
                 self.levelcompleted == True
+                self.lost = False
+        self.lost = True
         
 
 #w = g.GraphWin("Window", 1200, 1200)
@@ -56,7 +63,6 @@ while levelcount < 6:
     L = Level(levelcount)
     if L.lost:
         break
-w.close()
     
             
             

@@ -7,9 +7,9 @@ Created on Sun Dec  1 22:24:18 2019
 import numpy as np
 import random
 class Maze:
-    def __init__(self):
-        self.level = Control.Level.levelcount
-        self.dimensions = 5*level
+    def __init__(self,levelcount):
+        self.level = levelcount
+        self.dimensions = 5*self.level
         self.start = None
         self.end = None
         self.make_maze()
@@ -42,9 +42,9 @@ class Maze:
          start_location = (random.randint(0, self.dimensions-1),  random.randint(0, self.dimensions-1))
          while self.check_wall(start_location[0], start_location[1])== 'wall':
             start_location = (random.randint(0, self.dimensions-1),  random.randint(0, self.dimensions-1))
-         finish = self.maze(random.randint, random.randint) 
-         while finish == 1:
-             finish = self.maze(random.randint, random.randint)
+         finish = (random.randint(0, self.dimensions-1),  random.randint(0, self.dimensions-1))
+         while self.check_wall(finish[0], finish[1])== 'wall':
+            finish = (random.randint(0, self.dimensions-1),  random.randint(0, self.dimensions-1))
          self.start = start_location
          self.end = finish
              
