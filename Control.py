@@ -57,38 +57,11 @@ class Level():
             player.draw(w)
             k=""
             while k != "q":
-                clickpoint =w.checkMouse() #Don't think we need this, no clicking
+                clickpoint =w.checkMouse()
                 k=w.checkKey()
                 player.control(k)
     
-            w.close()   
-            
-w = g.GraphWin("Window", 1200, 1200)
-# bg must be a GIF
-background = g.Image((g.Point(600,600)), "corn_bg.gif")
-background.draw(w)
-scaling = 1200/m.Maze.get_name.dimensions
-
-for row in range(m.Maze.get_name.dimensions):
-    for col in range(m.Maze.get_name.dimensions):
-        if m.Maze.check_wall(row, col) == "empty":
-            path = g.Rectangle(g.Point(col * scaling, row * scaling), g.Point((col+1)*scaling, (row+1)*scaling))
-            path.setFill("yellow")
-            path.draw(w)
-
-
-player = p.Player(w, 300, 300)
-key = "z"
-levelcount = 0
-while key != "q":
-    key = w.checkKey()
-    p.control(key)
-while levelcount < 6:
-    levelcount += 1
-    L = Level(levelcount)
-    if L.lost:
-        break
-w.close()
+            w.close()     
     
             
             
