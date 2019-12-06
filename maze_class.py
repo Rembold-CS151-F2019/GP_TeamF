@@ -7,8 +7,8 @@ Created on Sun Dec  1 22:24:18 2019
 import numpy as np
 import random
 class Maze:
-    def __init__(self, level):
-        self.level = level
+    def __init__(self):
+        self.level = Control.Level.levelcount
         self.dimensions = 5*level
         self.start = None
         self.end = None
@@ -31,7 +31,7 @@ class Maze:
             
             
     def check_wall(self, x, y):
-        if self.maze[x,y]== 1:
+        if self.maze[x,y] == 1:
             path = 'empty'
            
         elif self.maze[x,y] == 0:
