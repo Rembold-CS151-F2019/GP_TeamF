@@ -16,7 +16,7 @@ class Level():
         self.levelcount = 1
         
         
-        self.w = g.GraphWin("Window", 700, 700)
+        self.w = g.GraphWin("Window", 1200, 1200)
         # bg must be a GIF
         background = g.Image((g.Point(600,600)), "corn_bg.gif")
         background.draw(self.w)
@@ -61,7 +61,7 @@ levelcount = 0
 while levelcount < 6:
     levelcount += 1
     L = Level(levelcount)
-    if L.lost:
+    if Level.self.levelcompleted == False:
         break
     
             

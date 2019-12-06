@@ -1,8 +1,7 @@
 import graphics as g
-#import numpy as np
+import numpy as np
 # Importing Isa's class to use
 import maze_class as m
-
 
 class Player:
     def __init__(self, w, x, y, maze, scaling):
@@ -16,7 +15,7 @@ class Player:
         
     # Making the visual representation of the player
     def draw(self):
-        self.object = g.Circle(g.Point(self.x, self.y), 20)
+        self.object = g.Circle(g.Point(self.x, self.y), 100)
         self.object.setFill("DarkViolet")
         self.object.draw(self.w)
         
@@ -27,7 +26,7 @@ class Player:
         moves = 0
         # scaling = 1200/m.Maze().get_name.dimensions
         # Allows for either arrows or WASD movement
-        if key == "Up" and self.maze.check_wall(self.get_location, self.get_location - self.scaling) != "wall" or key == "w" and self.maze.check_wall(self.get_location, self.get_location - scaling) != "wall":
+        if key == "Up" and self.maze.check_wall(self.get_location, self.get_location - self.scaling) != "wall" or key == "w" and self.maze.check_wall(self.get_location, self.get_location - self.scaling) != "wall":
             moves += 1
             self.object.move(0, -20)
         if key == "Down" and self.maze.check_wall(self.get_location, self.get_location + self.scaling) != "wall" or key == "s" and self.maze.check_wall(self.get_location, self.get_location + self.scaling) != "wall":
