@@ -50,21 +50,33 @@ class Level():
     def draw(self):
         if self.level+1:
             self.maze.draw(w)
+            w = g.GraphWin('Maze', 800,800)
+            w.setBackground('Green')
+            maze = m.Maze()
+            player = p.Player(w,0,0)
+            player.draw(w)
+            k=""
+            while k != "q":
+                clickpoint =w.checkMouse()
+                k=w.checkKey()
+                player.control(k)
+    
+            w.close()     
     
             
             
-w = g.GraphWin('Maze', 800,800)
-w.setBackground('Green')
-maze = m.Maze(5)
-player = p.Player(w,0,0)
-player.draw()
-k=""
-while k != "q":
-    clickpoint =w.checkMouse()
-    k=w.checkKey()
-    player.control(k)
+#w = g.GraphWin('Maze', 800,800)
+#w.setBackground('Green')
+#maze = m.Maze(5)
+#player = p.Player(w,0,0)
+#player.draw(w)
+#k=""
+#while k != "q":
+    #clickpoint =w.checkMouse()
+    #k=w.checkKey()
+    #player.control(k)
     
-w.close()     
+#w.close()     
     
 
 
