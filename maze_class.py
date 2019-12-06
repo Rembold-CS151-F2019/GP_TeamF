@@ -10,7 +10,10 @@ class Maze:
     def __init__(self, level):
         self.level = level
         self.dimensions = 5*level
+        self.start = None
+        self.end = None
         self.make_maze()
+        self.generate_location()
         
     
     def get_name(self):
@@ -34,5 +37,14 @@ class Maze:
         elif self.maze[x,y] == 0:
             path = 'wall'
         return path             
-      
-        
+    
+    def generate_location(self):    
+         start_location = (random.randint(0, self.dimensions-1),  random.randint(0, self.dimensions-1))
+         while self.check_wall(start_location[0], start_location[1])== 'wall':
+            start_location = (random.randint(0, self.dimensions-1),  random.randint(0, self.dimensions-1))
+         finish = self.maze(random.randint, random.randint) 
+         while finish == 1:
+             finish = self.maze(random.randint, random.randint)
+         self.start = start_location
+         self.end = finish
+             
