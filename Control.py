@@ -45,29 +45,20 @@ class Level():
         while k!= "q":
             k=self.w.checkKey()
             self.player.control(k)
-            #print(self.player.get_location())
-            #print(self.maze.end)
+            
             cur_r, cur_c = self.player.get_location()
             
             if (cur_r == self.maze.end[0]) and (cur_c == self.maze.end[1]):
                 print('Finished!')
-                self.lost = False
+                
                 break
-
+           
         self.w.close()
         
 
-#w = g.GraphWin("Window", 1200, 1200)
- # bg must be a GIF
-#background = g.Image((g.Point(600,600)), "corn_bg.gif")
-#background.draw(w)
-#scaling = 1200/m.Maze().get_name.dimensions
-#player = p.Player(w, m.Maze.start[0], m.Maze.start[1])
-#key = "z"
+
 levelcount = 0
-#while key != "q":
-    #key = w.checkKey()
-    #p.control(key)
+
 while levelcount < 6:
     levelcount += 1
     L = Level(levelcount)
@@ -76,7 +67,7 @@ while levelcount < 6:
     if L.lost:
         break
     
-" " " limiting the number of moves proved to be very difficult- we adjusted the game so that a loss comes from an impossible maze, essentially a win or lose is luck of the draw" " "  
+            
             
 
 
