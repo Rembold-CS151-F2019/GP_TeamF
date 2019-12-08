@@ -49,7 +49,6 @@ class Level():
             cur_r, cur_c = self.player.get_location()
             
             if (cur_r == self.maze.end[0]) and (cur_c == self.maze.end[1]):
-                print('Finished!')
                 
                 break
            
@@ -62,8 +61,7 @@ levelcount = 0
 while levelcount < 6:
     levelcount += 1
     L = Level(levelcount)
-    print('Level finished')
-    print(levelcount)
+    print('Level', levelcount, 'finished!')
     if levelcount>6:
         break
     
