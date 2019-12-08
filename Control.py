@@ -48,16 +48,12 @@ class Level():
             #print(self.player.get_location())
             #print(self.maze.end)
             cur_r, cur_c = self.player.get_location()
-            # if self.player.getmoves() > 10:
-                # self.lost = True
-                # break
+            
             if (cur_r == self.maze.end[0]) and (cur_c == self.maze.end[1]):
                 print('Finished!')
                 self.lost = False
                 break
-            if Player_class.Player.control.moves > 10:
-                self.lost == True 
-                return self.lost
+
         self.w.close()
         
 
@@ -72,7 +68,7 @@ levelcount = 0
 #while key != "q":
     #key = w.checkKey()
     #p.control(key)
-while levelcount < 6  and Level.play_maze.lost == True:
+while levelcount < 6:
     levelcount += 1
     L = Level(levelcount)
     print('Level finished')
@@ -80,7 +76,7 @@ while levelcount < 6  and Level.play_maze.lost == True:
     if L.lost:
         break
     
-            
+" " " limiting the number of moves proved to be very difficult- we adjusted the game so that a loss comes from an impossible maze, essentially a win or lose is luck of the draw" " "  
             
 
 
