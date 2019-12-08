@@ -24,22 +24,20 @@ class Player:
         
     # Allows for keyboard control and does not allow moves if wall is present
     def control(self, key):
+        scaling = self.w.getHeight()/self.maze.dimensions
         self.key = key
         # counter for every player move made
-        moves = 0
         # scaling = 1200/m.Maze().get_name.dimensions
         # Allows for either arrows or WASD movement
-        if key == "Up" and self.maze.check_wall(self.r-1, self.c) != "wall" or key == "w" and self.maze.check_wall(self.r-1, self.c) != "wall":
-            moves += 1
+        if key == "Up" and self.maze.check_wall(self.r-1, self.c) != "wall" and self.object.getCenter().getY() >= scaling or key == "w" and self.maze.check_wall(self.r-1, self.c) != "wall" and self.object.getCenter().getY() >= scaling:
             self.object.move(0, -self.scaling)
-        if (key == "Down" and self.maze.check_wall(self.r+1, self.c) != "wall") or (key == "s" and self.maze.check_wall(self.r+1, self.c) != "wall"):
-            moves += 1
+        # DOWN doesn't work properly for stopping at walls
+        if (key == "Down" and self.maze.check_wall(self.r+1, self.c) != "wall") and self.object.getCenter() >= scaling or (key == "s" and self.maze.check_wall(self.r+1, self.c) != "wall"):
             self.object.move(0, self.scaling)
-        if key == "Left" and self.maze.check_wall(self.r, self.c-1) != "wall" or key == "a" and self.maze.check_wall(self.r, self.c-1) != "wall":
-            moves += 1
+        if key == "Left" and self.maze.check_wall(self.r, self.c-1) != "wall" and self.object.getCenter().getX() >= scaling or key == "a" and self.maze.check_wall(self.r, self.c-1) != "wall" and self.object.getCenter().getX() >= scaling:
             self.object.move(-self.scaling, 0)
-        if key == "Right" and self.maze.check_wall(self.r, self.c+1) != "wall" or key == "d" and self.maze.check_wall(self.r, self.c+1) != "wall":
-            moves += 1
+        # RIGHT doesn't work for the walls. LEFT and UP work
+        if key == "Right" and self.maze.check_wall(self.r, self.c+1) != "wall" and self.object.getCenter().getX() >= self.maze.dimensions or key == "d" and self.maze.check_wall(self.r, self.c+1) != "wall":
             self.object.move(self.scaling, 0)
             
         self.location = self.object.getCenter()
@@ -49,6 +47,9 @@ class Player:
 
     def get_location(self):
         return (self.r, self.c)
+    
+    def get_moves(self):
+        return self.moves
             
 # w = g.GraphWin("Window", 1200, 1200)
 # # bg must be a GIF
