@@ -64,7 +64,7 @@ while levelcount < 6:
     L = Level(levelcount)
     print('Level finished')
     print(levelcount)
-    if L.lost:
+    if levelcount>6:
         break
     
             
