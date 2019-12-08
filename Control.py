@@ -52,8 +52,12 @@ class Level():
                 # self.lost = True
                 # break
             if (cur_r == self.maze.end[0]) and (cur_c == self.maze.end[1]):
+                print('Finished!')
                 self.lost = False
                 break
+            if Player_class.Player.control.moves > 10:
+                self.lost == True 
+                return self.lost
         self.w.close()
         
 
@@ -68,10 +72,11 @@ levelcount = 0
 #while key != "q":
     #key = w.checkKey()
     #p.control(key)
-while levelcount < 6:
+while levelcount < 6  and Level.play_maze.lost == True:
     levelcount += 1
     L = Level(levelcount)
-    print('Level', levelcount, 'finished in', p.Player.self.moves, 'moves!')
+    print('Level finished')
+    print(levelcount)
     if L.lost:
         break
     
